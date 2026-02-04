@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Teacher Viktor's Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --primary-light: #1E293B;
+            --accent: #F59E0B;
+            --accent-hover: #D97706;
+            --secondary: #10B981;
+            --bg-main: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --shadow: rgba(15, 23, 42, 0.08);
+            --shadow-lg: rgba(15, 23, 42, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .back-btn {
+            background: var(--bg-main);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: var(--border);
+            transform: translateX(-4px);
+        }
+
+        /* Main Content */
+        .checkout-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+        }
+
+        .checkout-section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        /* Auto-fill Helper */
+        .auto-fill-helper {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05));
+            border: 2px dashed var(--accent);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .auto-fill-helper-icon {
+            font-size: 2rem;
+        }
+
+        .auto-fill-helper-content {
+            flex: 1;
+        }
+
+        .auto-fill-helper-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .auto-fill-helper-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .auto-fill-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Manrope', sans-serif;
+            white-space: nowrap;
+        }
+
+        .auto-fill-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--bg-main);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--bg-card);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+
+        .form-input.filled {
+            background: rgba(16, 185, 129, 0.05);
+            border-color: var(--secondary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Saved Info Badge */
+        .saved-info-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-main);
+        }
+
+        .payment-option:hover {
+            border-color: var(--accent);
+            background: var(--bg-card);
+        }
+
+        .payment-option.active {
+            border-color: var(--accent);
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .payment-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .payment-method-name {
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-instructions {
+            background: rgba(245, 158, 11, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            text-align: left;
+            border-left: 4px solid var(--accent);
+        }
+
+        .qr-instructions strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .qr-instructions ol {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .qr-instructions li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .mobile-hint {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .mobile-hint::before {
+            content: "📱";
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        /* Email Note */
+        .email-note {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .email-note-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            color: #3b82f6;
+        }
+
+        .email-note strong {
+            color: #1e40af;
+            display: block;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .email-button {
+            background: #ea4335;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            width: 100%;
+            margin: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .email-button:hover {
+            background: #d23e31;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(234, 67, 53, 0.3);
+        }
+
+        .email-button.outlook {
+            background: #0078d4;
+        }
+
+        .email-button.outlook:hover {
+            background: #005a9e;
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+        }
+
+        .email-button.yahoo {
+            background: #720e9e;
+        }
+
+        .email-button.yahoo:hover {
+            background: #5a0b7d;
+            box-shadow: 0 4px 12px rgba(114, 14, 158, 0.3);
+        }
+
+        .email-options {
+            margin: 1rem 0;
+        }
+
+        .email-option {
+            background: var(--bg-main);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 0.75rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .step-number {
+            background: var(--accent);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--primary);
+        }
+
+        .item-meta {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--primary);
+            text-align: right;
+            margin-left: 1rem;
+        }
+
+        .summary-total {
+            background: var(--bg-main);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .total-row:last-child {
+            margin-bottom: 0;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .total-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .total-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .grand-total {
+            font-size: 1.5rem;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1.25rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Manrope', sans-serif;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .loading-spinner {
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error Message */
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        /* Security Badge */
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .security-icon {
+            color: var(--secondary);
+            font-size: 1.25rem;
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .empty-cart h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .empty-cart p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .shop-btn {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .shop-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1.5rem;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">T</div>
+                <span>Teacher Viktor's Hub</span>
+            </a>
+            <a href="index.html" class="back-btn">← Back to Services</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="checkout-container" id="mainContent">
+        <!-- Empty Cart Message -->
+        <div class="empty-cart" id="emptyCart" style="display: none; grid-column: 1 / -1;">
+            <div class="empty-icon">🛒</div>
+            <h2>Your cart is empty</h2>
+            <p>Add some tutorial services to proceed with checkout</p>
+            <a href="index.html" class="shop-btn">Browse Services</a>
+        </div>
+
+        <!-- Payment Form -->
+        <div class="checkout-section" id="paymentForm">
+            <h2 class="section-title">
+                <span class="section-icon">💳</span>
+                Payment Information
+            </h2>
+
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                Order ID: <strong id="orderId">TUTOR-0001</strong>
+            </p>
+
+            <form id="checkoutForm">
+                <!-- Auto-fill Helper -->
+                <div class="auto-fill-helper" id="autoFillHelper">
+                    <div class="auto-fill-helper-icon">✨</div>
+                    <div class="auto-fill-helper-content">
+                        <div class="auto-fill-helper-title">Quick Fill</div>
+                        <div class="auto-fill-helper-text">Use previously saved information</div>
+                    </div>
+                    <button type="button" class="auto-fill-btn" onclick="autoFillCustomerInfo()">
+                        Auto-Fill Details
+                    </button>
+                </div>
+
+                <!-- Contact Information -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--primary);">
+                        Contact Details
+                        <span class="saved-info-badge hidden" id="savedInfoBadge">
+                            ✓ Info Saved
+                        </span>
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" id="fullName" class="form-input" required placeholder="John Doe" oninput="saveCustomerInfo()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" id="customerEmail" class="form-input" required placeholder="john@example.com" oninput="saveCustomerInfo()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" id="phoneNumber" class="form-input" required placeholder="+63 912 345 6789" oninput="saveCustomerInfo()">
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--primary);">Select Payment Method</h3>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-option active" onclick="selectPayment('gcash', this)">
+                            <span class="payment-icon">📱</span>
+                            <span class="payment-method-name">GCash</span>
+                        </div>
+
+                        <div class="payment-option" onclick="selectPayment('card', this)">
+                            <span class="payment-icon">💳</span>
+                            <span class="payment-method-name">Credit/Debit Card</span>
+                        </div>
+
+                        <div class="payment-option" onclick="selectPayment('bank', this)">
+                            <span class="payment-icon">🏦</span>
+                            <span class="payment-method-name">Bank Transfer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GCash Form -->
+                <div id="gcashForm">
+                    <h4 style="margin-bottom: 1rem;">GCash Payment</h4>
+                    
+                    <div class="qr-section">
+                        <p>Scan QR code to pay instantly:</p>
+                        <div class="qr-code">
+                            <img src="images/qr.jpg" alt="GCash QR Code" onerror="handleQRerror()">
+                        </div>
+                        <p>Or send payment to: <strong>0975-447-1593</strong></p>
+                    </div>
+                    
+                    <div class="qr-instructions">
+                        <strong>How to pay:</strong>
+                        <ol>
+                            <li>Open GCash app and tap "Scan QR"</li>
+                            <li>Scan the QR code above</li>
+                            <li>Enter amount: <strong id="qrAmount">₱0</strong></li>
+                            <li>Add reference: <strong id="gcashReference">TUTOR-0001</strong></li>
+                            <li>Confirm payment</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="mobile-hint">
+                        On mobile? Tap and hold the QR code to save it, then open with GCash.
+                    </div>
+                    
+                    <div class="email-note">
+                        <div class="email-note-icon">📧</div>
+                        <strong>Send Payment Proof via Email</strong>
+                        <p>After making the payment, please send your proof of payment to:</p>
+                        <p style="font-size: 1.1rem; background: white; padding: 0.75rem; border-radius: 8px; margin: 1rem 0; font-weight: 700;">
+                            leecasiopea45@gmail.com
+                        </p>
+                        
+                        <div class="email-options">
+                            <div class="email-option">
+                                <div><span class="step-number">1</span> <strong>Make the payment</strong></div>
+                                <p style="margin: 0.5rem 0 0 2.5rem; color: var(--text-secondary); font-size: 0.9rem;">Complete the transaction using the instructions above</p>
+                            </div>
+                            
+                            <div class="email-option">
+                                <div><span class="step-number">2</span> <strong>Take a screenshot</strong></div>
+                                <p style="margin: 0.5rem 0 0 2.5rem; color: var(--text-secondary); font-size: 0.9rem;">Capture your payment confirmation screen</p>
+                            </div>
+                            
+                            <div class="email-option">
+                                <div><span class="step-number">3</span> <strong>Send via email</strong></div>
+                                <p style="margin: 0.5rem 0 0 2.5rem; color: var(--text-secondary); font-size: 0.9rem;">Click the button below to open your email with pre-filled details</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <button type="button" onclick="openGmailWithDetails()" class="email-button">
+                                📧 Open Gmail to Send Proof
+                            </button>
+                            <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.75rem; text-align: center;">
+                                Or use: 
+                                <button type="button" onclick="openOutlookWithDetails()" style="background: none; border: none; color: #0078d4; cursor: pointer; padding: 0.25rem; font-size: 0.875rem; text-decoration: underline;">Outlook</button> | 
+                                <button type="button" onclick="openYahooWithDetails()" style="background: none; border: none; color: #720e9e; cursor: pointer; padding: 0.25rem; font-size: 0.875rem; text-decoration: underline;">Yahoo Mail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Form -->
+                <div id="cardForm" class="hidden">
+                    <h4 style="margin-bottom: 1rem;">Credit Card Payment</h4>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Card Number</label>
+                        <input type="text" id="cardNumber" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="text" id="cardExpiry" class="form-input" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CVV</label>
+                            <input type="text" id="cardCVV" class="form-input" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Cardholder Name</label>
+                        <input type="text" id="cardName" class="form-input" placeholder="John Doe">
+                    </div>
+                    
+                    <div class="email-note">
+                        <div class="email-note-icon">📧</div>
+                        <strong>Send Payment Confirmation</strong>
+                        <p>After payment is complete, please send your confirmation to:</p>
+                        <p style="font-size: 1.1rem; background: white; padding: 0.75rem; border-radius: 8px; margin: 1rem 0; font-weight: 700;">
+                            leecasiopea45@gmail.com
+                        </p>
+                        <button type="button" onclick="openGmailWithDetails()" class="email-button">
+                            📧 Open Gmail to Send Proof
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bank Form -->
+                <div id="bankForm" class="hidden">
+                    <h4 style="margin-bottom: 1rem;">Bank Transfer</h4>
+                    
+                    <div style="background: var(--bg-main); padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+                        <p style="margin: 0.5rem 0;"><strong>Bank:</strong> CHINA BANK</p>
+                        <p style="margin: 0.5rem 0;"><strong>Account:</strong> 1003-0300-1691</p>
+                        <p style="margin: 0.5rem 0;"><strong>Account Name:</strong> Joel Victorio</p>
+                        <p style="margin: 0.5rem 0;"><strong>Reference:</strong> <span id="bankReference">TUTOR-0001</span></p>
+                        <p style="margin: 0.5rem 0;"><strong>Amount:</strong> <span id="bankAmount">₱0</span></p>
+                    </div>
+                    
+                    <div class="email-note">
+                        <div class="email-note-icon">📧</div>
+                        <strong>Send Payment Proof via Email</strong>
+                        <p>After making the transfer, please send your proof of payment to:</p>
+                        <p style="font-size: 1.1rem; background: white; padding: 0.75rem; border-radius: 8px; margin: 1rem 0; font-weight: 700;">
+                            leecasiopea45@gmail.com
+                        </p>
+                        <button type="button" onclick="openGmailWithDetails()" class="email-button">
+                            📧 Open Gmail to Send Proof
+                        </button>
+                    </div>
+                </div>
+
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p id="loadingText">Processing order...</p>
+                </div>
+                
+                <div id="errorMessage" class="error-message hidden"></div>
+
+                <button type="button" onclick="processPayment()" id="completePaymentBtn" class="submit-btn">
+                    Complete Order 🔒
+                </button>
+
+                <div class="security-badge">
+                    <span class="security-icon">🔒</span>
+                    <span>Secure SSL Encrypted Payment</span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="checkout-section order-summary" id="orderSummary">
+            <h2 class="section-title">
+                <span class="section-icon">📋</span>
+                Order Summary
+            </h2>
+
+            <div id="summaryItems">
+                <!-- Items will be populated here -->
+            </div>
+
+            <div class="summary-total">
+                <div class="total-row">
+                    <span class="total-label">Subtotal:</span>
+                    <span class="total-value" id="subtotalPHP">₱0</span>
+                </div>
+                <div class="total-row">
+                    <span class="total-label">Tax (0%):</span>
+                    <span class="total-value">₱0</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span class="total-label">Total:</span>
+                    <span class="total-value" id="totalPHP">₱0</span>
+                </div>
+                <div style="text-align: right; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;" id="totalUSD">
+                    ≈ $0.00 USD
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="checkout-section success-message" id="paymentStatus" style="grid-column: 1 / -1;">
+            <div class="success-icon">✓</div>
+            <h2 class="section-title" style="justify-content: center;">Order Submitted Successfully!</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Thank you for your purchase.</p>
+            <p>Order ID: <strong id="successOrderId"></strong></p>
+            <p>Total Amount: <strong id="finalTotal"></strong></p>
+            
+            <div class="email-note" style="text-align: left; margin-top: 2rem;">
+                <div style="display: flex; align-items: start;">
+                    <div style="background: #3b82f6; color: white; padding: 0.5rem 0.75rem; border-radius: 50%; margin-right: 1rem; font-size: 1.5rem;">📧</div>
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0 0 1rem 0; color: #1e40af;">Next Step: Send Payment Proof</h4>
+                        <p style="margin: 0 0 1rem 0;">Click below to open your email with pre-filled details:</p>
+                        
+                        <div style="margin: 1rem 0;">
+                            <button type="button" onclick="openGmailWithDetails()" class="email-button">
+                                📧 Open Gmail to Send Proof
+                            </button>
+                            
+                            <div style="display: flex; gap: 0.75rem; margin-top: 0.75rem;">
+                                <button type="button" onclick="openOutlookWithDetails()" class="email-button outlook" style="flex: 1;">
+                                    Outlook
+                                </button>
+                                <button type="button" onclick="openYahooWithDetails()" class="email-button yahoo" style="flex: 1;">
+                                    Yahoo Mail
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 1rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid var(--secondary);">
+                            <strong>What will be included:</strong>
+                            <ul style="margin: 0.75rem 0 0 1.5rem; padding: 0; color: var(--text-secondary);">
+                                <li>Your Order ID</li>
+                                <li>Payment method used</li>
+                                <li>Total amount paid</li>
+                                <li>Email for receipt</li>
+                                <li>Order items list</li>
+                            </ul>
+                        </div>
+                        
+                        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.75rem;">
+                            <strong>Note:</strong> Don't forget to attach your payment proof screenshot!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 1.5rem; color: var(--text-secondary);">You will receive a confirmation email once payment is verified.</p>
+            <button onclick="goToHome()" class="shop-btn" style="margin-top: 1.5rem;">
+                Back to Home
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== CONFIGURATION ====================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1DYlAu5Ofxwy02JZOTiz8owYLkHbkMz3dh5AIHGn5tNMjIzPGhY-2ho3m3Ye0Zke4qg/exec';
+        const ADMIN_EMAIL = 'leecasiopea45@gmail.com';
+        // =======================================================
+        
+        // Cart state
+        let cart = [];
+        let exchangeRate = 0.018;
+
+        // Generate order ID
+        function generateOrderId() {
+            const timestamp = Date.now().toString().slice(-6);
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `TUTOR-${timestamp}${random}`;
+        }
+
+        // ==================== AUTO-FILL FUNCTIONS ====================
+        
+        // Save customer info to localStorage as they type
+        function saveCustomerInfo() {
+            const customerInfo = {
+                fullName: document.getElementById('fullName').value.trim(),
+                email: document.getElementById('customerEmail').value.trim(),
+                phone: document.getElementById('phoneNumber').value.trim(),
+                lastUpdated: new Date().toISOString()
+            };
+            
+            // Only save if at least one field has data
+            if (customerInfo.fullName || customerInfo.email || customerInfo.phone) {
+                localStorage.setItem('tutorCustomerInfo', JSON.stringify(customerInfo));
+                updateSavedBadge();
+                updateFieldStyles();
+            }
+        }
+
+        // Load saved customer info
+        function loadSavedCustomerInfo() {
+            const savedInfo = localStorage.getItem('tutorCustomerInfo');
+            if (savedInfo) {
+                try {
+                    const customerInfo = JSON.parse(savedInfo);
+                    
+                    // Check if info is not too old (optional - 30 days)
+                    const lastUpdated = new Date(customerInfo.lastUpdated);
+                    const daysSinceUpdate = (new Date() - lastUpdated) / (1000 * 60 * 60 * 24);
+                    
+                    if (daysSinceUpdate < 30) {
+                        // Show the auto-fill helper if we have saved info
+                        document.getElementById('autoFillHelper').style.display = 'flex';
+                        updateSavedBadge();
+                        return customerInfo;
+                    }
+                } catch (error) {
+                    console.error('Error loading saved info:', error);
+                }
+            }
+            
+            // Hide auto-fill helper if no saved info
+            document.getElementById('autoFillHelper').style.display = 'none';
+            return null;
+        }
+
+        // Auto-fill customer information
+        function autoFillCustomerInfo() {
+            const savedInfo = loadSavedCustomerInfo();
+            if (savedInfo) {
+                if (savedInfo.fullName) {
+                    document.getElementById('fullName').value = savedInfo.fullName;
+                }
+                if (savedInfo.email) {
+                    document.getElementById('customerEmail').value = savedInfo.email;
+                }
+                if (savedInfo.phone) {
+                    document.getElementById('phoneNumber').value = savedInfo.phone;
+                }
+                
+                updateFieldStyles();
+                updateSavedBadge();
+                
+                // Show success feedback
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Filled!';
+                btn.style.background = 'var(--secondary)';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }
+        }
+
+        // Update saved info badge visibility
+        function updateSavedBadge() {
+            const savedInfo = localStorage.getItem('tutorCustomerInfo');
+            const badge = document.getElementById('savedInfoBadge');
+            
+            if (savedInfo) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        // Update field styles to show filled fields
+        function updateFieldStyles() {
+            const fields = ['fullName', 'customerEmail', 'phoneNumber'];
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field.value.trim()) {
+                    field.classList.add('filled');
+                } else {
+                    field.classList.remove('filled');
+                }
+            });
+        }
+
+        // Clear saved customer info (optional function)
+        function clearSavedCustomerInfo() {
+            localStorage.removeItem('tutorCustomerInfo');
+            updateSavedBadge();
+            document.getElementById('autoFillHelper').style.display = 'none';
+        }
+
+        // ==================== END AUTO-FILL FUNCTIONS ====================
+
+        // Load cart from localStorage
+        function loadCart() {
+            const cartData = localStorage.getItem('tutorCart');
+            const rateData = localStorage.getItem('exchangeRate');
+            
+            if (cartData) {
+                cart = JSON.parse(cartData);
+            }
+            
+            if (rateData) {
+                exchangeRate = parseFloat(rateData);
+            }
+
+            if (cart.length === 0) {
+                document.getElementById('emptyCart').style.display = 'block';
+                document.getElementById('paymentForm').style.display = 'none';
+                document.getElementById('orderSummary').style.display = 'none';
+            } else {
+                displayOrderSummary();
+            }
+        }
+
+        // Display order summary
+        function displayOrderSummary() {
+            const summaryItems = document.getElementById('summaryItems');
+            const orderId = generateOrderId();
+            
+            // Update all order ID references
+            document.getElementById('orderId').textContent = orderId;
+            document.getElementById('gcashReference').textContent = orderId;
+            document.getElementById('bankReference').textContent = orderId;
+            document.getElementById('successOrderId').textContent = orderId;
+            
+            let itemsHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                itemsHTML += `
+                    <div class="summary-item">
+                        <div class="item-details">
+                            <div class="item-name">${item.icon} ${item.name}</div>
+                            <div class="item-meta">${item.quantity} hour${item.quantity > 1 ? 's' : ''} × ₱${item.price.toLocaleString()}</div>
+                        </div>
+                        <div class="item-price">₱${itemTotal.toLocaleString()}</div>
+                    </div>
+                `;
+            });
+
+            summaryItems.innerHTML = itemsHTML;
+            
+            // Update totals
+            document.getElementById('subtotalPHP').textContent = `₱${total.toLocaleString()}`;
+            document.getElementById('totalPHP').textContent = `₱${total.toLocaleString()}`;
+            
+            // Update amounts in payment forms
+            document.getElementById('qrAmount').textContent = `₱${total.toLocaleString()}`;
+            document.getElementById('bankAmount').textContent = `₱${total.toLocaleString()}`;
+            
+            const totalUSD = (total * exchangeRate).toFixed(2);
+            document.getElementById('totalUSD').textContent = `≈ $${parseFloat(totalUSD).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
+        }
+
+        // Select payment method
+        function selectPayment(method, element) {
+            // Remove active from all
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            
+            // Hide all forms
+            document.getElementById('gcashForm').classList.add('hidden');
+            document.getElementById('cardForm').classList.add('hidden');
+            document.getElementById('bankForm').classList.add('hidden');
+            
+            // Activate selected
+            if (element) {
+                element.classList.add('active');
+            }
+            
+            // Show selected form
+            const form = document.getElementById(method + 'Form');
+            if (form) {
+                form.classList.remove('hidden');
+            }
+        }
+
+        // Handle QR code image error
+        function handleQRerror() {
+            const qrContainer = document.querySelector('.qr-code');
+            qrContainer.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 1.5rem;">
+                    <div style="font-size: 2rem; margin-bottom: 0.75rem;">📱</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); text-align: center;">
+                        QR Code Image (qr.jpg)<br>
+                        <span style="font-size: 0.75rem;">Place qr.jpg in images folder</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Get payment method
+        function getPaymentMethod() {
+            const activeOption = document.querySelector('.payment-option.active');
+            return activeOption ? activeOption.textContent.trim() : 'GCash';
+        }
+
+        // Get order items as text
+        function getOrderItemsText() {
+            let itemsText = '';
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                itemsText += `• ${item.name} x${item.quantity} - ₱${itemTotal.toLocaleString()}\n`;
+            });
+            return itemsText;
+        }
+
+        // Calculate total
+        function calculateTotal() {
+            return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        }
+
+        // Generate email content
+        function generateEmailContent() {
+            const total = calculateTotal();
+            const totalUSD = (total * exchangeRate).toFixed(2);
+            const orderId = document.getElementById('orderId').textContent;
+            const paymentMethod = getPaymentMethod();
+            const customerEmail = document.getElementById('customerEmail').value || 'Not provided';
+            const itemsText = getOrderItemsText();
+            const date = new Date().toLocaleString();
+            
+            return {
+                subject: `Payment Proof for Order ${orderId} - ₱${total.toLocaleString()} ($${totalUSD})`,
+                body: `Hello,
+
+Please find attached my payment proof for:
+
+Order Details:
+• Order ID: ${orderId}
+• Total Amount: ₱${total.toLocaleString()} (≈ $${totalUSD} USD)
+• Payment Method: ${paymentMethod}
+• Customer Email: ${customerEmail}
+• Date: ${date}
+
+Order Items:
+${itemsText}
+
+I have attached my payment proof screenshot/photo.
+
+Thank you!
+[Sent via TutorHub Payment System]`
+            };
+        }
+
+        // Open email clients
+        function openGmailWithDetails() {
+            const emailContent = generateEmailContent();
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(ADMIN_EMAIL)}&su=${encodeURIComponent(emailContent.subject)}&body=${encodeURIComponent(emailContent.body)}`;
+            window.open(gmailUrl, '_blank');
+            saveEmailAction('gmail_opened', document.getElementById('orderId').textContent);
+        }
+
+        function openOutlookWithDetails() {
+            const emailContent = generateEmailContent();
+            const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(ADMIN_EMAIL)}&subject=${encodeURIComponent(emailContent.subject)}&body=${encodeURIComponent(emailContent.body)}`;
+            window.open(outlookUrl, '_blank');
+            saveEmailAction('outlook_opened', document.getElementById('orderId').textContent);
+        }
+
+        function openYahooWithDetails() {
+            const emailContent = generateEmailContent();
+            const yahooUrl = `https://compose.mail.yahoo.com/?to=${encodeURIComponent(ADMIN_EMAIL)}&subject=${encodeURIComponent(emailContent.subject)}&body=${encodeURIComponent(emailContent.body)}`;
+            window.open(yahooUrl, '_blank');
+            saveEmailAction('yahoo_opened', document.getElementById('orderId').textContent);
+        }
+
+        // Save email action
+        function saveEmailAction(action, orderId) {
+            try {
+                const emailActions = JSON.parse(localStorage.getItem('emailActions')) || [];
+                emailActions.push({
+                    action: action,
+                    orderId: orderId,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('emailActions', JSON.stringify(emailActions));
+            } catch (error) {
+                console.error('Error saving email action:', error);
+            }
+        }
+
+        // Validate form
+        function validateForm() {
+            if (cart.length === 0) {
+                showError('Your cart is empty!');
+                return false;
+            }
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const customerEmail = document.getElementById('customerEmail').value.trim();
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+
+            if (!fullName || !customerEmail || !phoneNumber) {
+                showError('Please fill in all contact details');
+                return false;
+            }
+
+            // Save the customer info before processing
+            saveCustomerInfo();
+
+            return true;
+        }
+
+        // Show error
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+            setTimeout(() => errorDiv.classList.add('hidden'), 5000);
+        }
+
+        // Send data to Google Sheets
+        async function sendTextDataToSheet(orderData) {
+            try {
+                const formData = new FormData();
+                formData.append('orderId', orderData.orderId);
+                formData.append('customerEmail', orderData.customerEmail || 'Not provided');
+                formData.append('customerName', orderData.customerName || 'Not provided');
+                formData.append('phoneNumber', orderData.phoneNumber || 'Not provided');
+                formData.append('paymentMethod', orderData.paymentMethod);
+                formData.append('totalAmount', `₱${orderData.total}`);
+                formData.append('totalUSD', `$${orderData.totalUSD}`);
+                formData.append('items', orderData.items);
+                formData.append('status', 'Pending Payment Proof');
+                formData.append('date', new Date().toLocaleString());
+                formData.append('emailOpened', 'No');
+
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to connect to Google Script');
+                }
+
+                const text = await response.text();
+                console.log('Google Script response:', text);
+
+                return text.includes('success') || text.includes('saved');
+
+            } catch (error) {
+                console.error('Error sending text data:', error);
+                return false;
+            }
+        }
+
+        // Process payment
+        async function processPayment() {
+            if (!validateForm()) {
+                return;
+            }
+
+            const total = calculateTotal();
+            const totalUSD = (total * exchangeRate).toFixed(2);
+            const orderId = document.getElementById('orderId').textContent;
+            const paymentMethod = getPaymentMethod();
+            const customerEmail = document.getElementById('customerEmail').value;
+            const fullName = document.getElementById('fullName').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+
+            // Prepare order data
+            const orderData = {
+                orderId: orderId,
+                paymentMethod: paymentMethod,
+                total: total.toLocaleString(),
+                totalUSD: totalUSD,
+                customerEmail: customerEmail,
+                customerName: fullName,
+                phoneNumber: phoneNumber,
+                items: JSON.stringify(cart.map(item => ({
+                    name: item.name,
+                    quantity: item.quantity,
+                    price: item.price
+                })))
+            };
+
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('completePaymentBtn').disabled = true;
+            document.getElementById('errorMessage').classList.add('hidden');
+
+            try {
+                // Update loading text
+                document.getElementById('loadingText').textContent = 'Submitting order details...';
+
+                // Send to Google Sheets
+                const textSuccess = await sendTextDataToSheet(orderData);
+
+                if (textSuccess) {
+                    setTimeout(() => {
+                        completeOrderProcess(orderId, total, totalUSD);
+                    }, 1000);
+                } else {
+                    throw new Error('Failed to submit order details');
+                }
+
+            } catch (error) {
+                console.error('Payment error:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('completePaymentBtn').disabled = false;
+                showError('Failed to submit order details. Please try again.');
+            }
+        }
+
+        // Complete order process
+        function completeOrderProcess(orderId, total, totalUSD) {
+            // Save to localStorage
+            const completedOrders = JSON.parse(localStorage.getItem('completedOrders')) || [];
+            completedOrders.push({
+                orderId: orderId,
+                date: new Date().toISOString(),
+                total: total,
+                totalUSD: totalUSD,
+                items: cart,
+                paymentMethod: getPaymentMethod()
+            });
+            localStorage.setItem('completedOrders', JSON.stringify(completedOrders));
+
+            // Clear cart
+            localStorage.removeItem('tutorCart');
+
+            // Update final amounts
+            document.getElementById('finalTotal').textContent = `₱${total.toLocaleString()} (≈ $${totalUSD} USD)`;
+
+            // Hide forms, show success
+            document.getElementById('paymentForm').style.display = 'none';
+            document.getElementById('orderSummary').style.display = 'none';
+            document.getElementById('paymentStatus').classList.add('show');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            console.log(`✅ Order ${orderId} submitted successfully`);
+        }
+
+        // Navigation
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Initialize
+        window.onload = function() {
+            loadCart();
+            selectPayment('gcash');
+            
+            // Load saved customer info
+            loadSavedCustomerInfo();
+
+            // Test connection
+            console.log('Testing Google Script connection...');
+            fetch(GOOGLE_SCRIPT_URL)
+                .then(() => console.log('✅ Connected to Google Script'))
+                .catch(err => console.warn('⚠️ Connection test failed:', err.message));
+        };
+    </script>
+</body>
+</html>
